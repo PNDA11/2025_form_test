@@ -58,7 +58,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "テキストボタン";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.button1_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

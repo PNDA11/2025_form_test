@@ -23,15 +23,23 @@ namespace form_test
                     testbutton.Location = new Point(i*100,j*50);
                     testbutton.Size = new Size(50, 50);
                     testbutton.Text = "あいうえお";
+                    //buttonを押すとmessageBoxの中のやつが出る
+                    //Click Event に　hogehogeClick関数を登録
+                    testbutton.MouseHover += hogehogeClick;
+                    //controlにbutton を追加
                     Controls.Add(testbutton);
                 }
             }
 
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void hogehogeClick(object sender,EventArgs e)
         {
-            //MessageBox.Show("C#の世界へようこそ!");
+            MessageBox.Show("クリックされてしまいました");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("C#の世界へようこそ!");
         }
     }
 }
