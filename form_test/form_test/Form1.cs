@@ -15,28 +15,27 @@ namespace form_test
         public Form1()
         {
             InitializeComponent();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for (int j =0; j < 4; j++)
-                {
-                    テキストボタン testbutton = new テキストボタン();
-                    testbutton.Location = new Point(i*100,j*50);
-                    testbutton.Size = new Size(50, 50);
-                    testbutton.Text = "あいうえお";
+                for (int j =0; j < 3; j++)
+                {//
+                    TestButton testButton = new TestButton(new Point(i * 100, j * 50),new Size(50, 50),"あいうえお");
+                    //ボタンの位置を設定
+                   // testbutton.Location = new Point(i*100,j*50);
+                    //ボタンの大きさを設定
+                    //testbutton.Size = ;
+                    //testbutton.Text = ;
                     //buttonを押すとmessageBoxの中のやつが出る
                     //Click Event に　hogehogeClick関数を登録
-                    testbutton.MouseHover += hogehogeClick;
-                    //controlにbutton を追加
-                    Controls.Add(testbutton);
+                    //click ＝押すときに字がでる
+                    //Ｍｏｕｓｅｏｖｅｒ＝mouseをのせるだけで映す
+                    
+                    Controls.Add(testButton);
                 }
             }
 
         }
-        private void hogehogeClick(object sender,EventArgs e)
-        {
-            MessageBox.Show("クリックされてしまいました");
-        }
-
+      
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("C#の世界へようこそ!");
