@@ -22,6 +22,8 @@ namespace form_test
         //ボタンの縦に何個並ぶか
         const int BOARD_SIZE_Y = 3;
 
+        //TestButton の二次元配列
+
         private TestButton[,] _buttonArray;
 
         public Form1()
@@ -32,23 +34,23 @@ namespace form_test
             for (int i = 0; i < BOARD_SIZE_X; i++)
             {
                 for (int j =0; j < BOARD_SIZE_Y; j++)
-                {//
+                {//インスタンス作成
                     TestButton testButton = 
-                        new TestButton(new Point(BUTTON_SIZE_X*i, BUTTON_SIZE_Y*j),
+                        new TestButton(this,
+                        new Point(BUTTON_SIZE_X*i, BUTTON_SIZE_Y*j),
                                        new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),"あいうえお");
                     //配列にボタンの参照を追加
                     _buttonArray[j,i]=testButton;
-                    //buttonを押すとmessageBoxの中のやつが出る
-                    //Click Event に　hogehogeClick関数を登録
-                    //click ＝押すときに字がでる
-                    //Ｍｏｕｓｅｏｖｅｒ＝mouseをのせるだけで映す
-                    //controlにbutton
-                    Controls.Add(testButton);
+
+                    Controls.Add(testButton);                  //buttonを押すとmessageBoxの中のやつが出る
+                 
                 }
             }
-            _buttonArray[1,0 ].SetEnable(true);
-           
-
+  
+        }
+        public TestButton GetTestButton(int x,int y)
+        {
+            return _buttonArray[y,x];
         }
       
         private void button1_Click(object sender, EventArgs e)
