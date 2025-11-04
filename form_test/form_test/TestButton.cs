@@ -14,18 +14,21 @@ namespace form_test
         private Color _onColor=Color.Beige;
         //offの時の色
         private Color _offColor = Color.Brown;
-        //現在　on か　off か
-        //押すと色変わる
-        private bool _enable;
-
+        
+        private bool _enable;   //現在　on か　off か
+                                //押すと色変わる
         private Form1 _form1;
-        public TestButton(Form1 form1, Point position, Size size, string text)
-        {
-            //Form1の参照を保管
-            _form1 = form1;
 
-            
-            Location = position;    //ボタンの位置の設定
+        private int _x; //横位置
+        private int _y; //縦位置
+        public TestButton(Form1 form1,int x,int y,  Size size, string text)
+        { 
+            _form1 = form1; //Form1の参照を保管
+            _x = x;         //横位置を保管
+            _y = y;         //縦位置を保管
+
+
+            Location = new Point(x * size.Width, y * size.Height);   //ボタンの位置の設定
             
             Size = size;            //ボタンの大きさの設定
            
@@ -50,13 +53,17 @@ namespace form_test
             }
             
         }
+        public void Toggle()
+        {
+            SetEnable(!_enable);
+        }
         //自分で作成することも可能
           private void ClickEvent(object sender,EventArgs e)
         {
             //( )のなかにtrueを入れるとtrue の色だけに変わる
             //( )のなかにfalseを入れるとfalse の色だけに変わる
 
-            _form1.GetTestButton(1, 1).SetEnable(true);//ctrl R ２回
+            _form1.GetTestButton(_x,_y).Toggle();//ctrl R ２回
         }
 
 

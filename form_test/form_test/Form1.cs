@@ -34,15 +34,14 @@ namespace form_test
             for (int i = 0; i < BOARD_SIZE_X; i++)
             {
                 for (int j =0; j < BOARD_SIZE_Y; j++)
-                {//インスタンス作成
-                    TestButton testButton = 
-                        new TestButton(this,
-                        new Point(BUTTON_SIZE_X*i, BUTTON_SIZE_Y*j),
-                                       new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),"あいうえお");
-                    //配列にボタンの参照を追加
-                    _buttonArray[j,i]=testButton;
+                {       //インスタンス作成
+                    TestButton testButton = new TestButton
+                       (this,i,j,
+                        new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),"あいうえお");
+                    
+                    _buttonArray[j,i]=testButton;//配列にボタンの参照を追加
 
-                    Controls.Add(testButton);                  //buttonを押すとmessageBoxの中のやつが出る
+                    Controls.Add(testButton); //buttonを押すとmessageBoxの中のやつが出る
                  
                 }
             }
@@ -50,6 +49,8 @@ namespace form_test
         }
         public TestButton GetTestButton(int x,int y)
         {
+            if (x < 0 || x > BOARD_SIZE_X) return null;
+            if (y < 0 || y > BOARD_SIZE_Y) return null;
             return _buttonArray[y,x];
         }
       
