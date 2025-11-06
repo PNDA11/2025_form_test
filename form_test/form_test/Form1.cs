@@ -45,7 +45,9 @@ namespace form_test
                  
                 }
             }
-  
+            // フォーム初期化時にランダム盤面作成
+            RandomizeBoard();
+
         }
         public TestButton GetTestButton(int x,int y)
         {
@@ -53,10 +55,38 @@ namespace form_test
             if (y < 0 || y >=BOARD_SIZE_Y) return null;
             return _buttonArray[y,x];
         }
-      
-        private void button1_Click(object sender, EventArgs e)
+        // TestButtonクラスに追加
+        
+
+        // Form1クラスに盤面ランダム化用メソッド
+        public void RandomizeBoard()
         {
-            MessageBox.Show("C#の世界へようこそ!");
+            Random Rnd = new Random();
+            for (int i = 0; i < BOARD_SIZE_X; i++)
+            {
+                for (int j = 0; j < BOARD_SIZE_Y; j++)
+                {
+                    _buttonArray[j, i].Randomize(Rnd);
+                }
+            }
+        }
+        public bool IsClear()
+        {
+            bool first = _buttonArray[0, 0].IsOn;
+            foreach (var btn in _buttonArray)
+            {
+                if (btn.IsOn != first)
+                    return false;
+            }
+            return true;
+        }
+        public void CheckAndClear()
+        {
+            if (IsClear())
+            {
+                MessageBox.Show("クリア！再スタートします！");
+                RandomizeBoard();
+            }
         }
     }
 }
