@@ -46,13 +46,18 @@ namespace form_test
             BackColor = on ?
             _onColor : _offColor;
         }
-
+        /// <summary>
+        /// 現在のOn/Off状態を反転する（OnはOffに、OffはOnに切替）
+        /// </summary>
 
         public void Toggle()
         {
             SetEnable(!_enable);
         }
-
+        /// <summary>
+        /// 盤面の初期化やリセットで、ランダムにオンオフ設定する
+        /// </summary>
+        /// <param name="rnd">乱数生成器</param>
         public void Randomize(Random rnd)
         {
             SetEnable(rnd.Next(2) == 0);
@@ -61,19 +66,22 @@ namespace form_test
         {
             int[][] toggleOffsets = new int[][]
             {
-        new int[]{ 0, 0 },
-        new int[]{ 1, 0 },
-        new int[]{ -1, 0 },
-        new int[]{ 0, 1 },
-        new int[]{ 0, -1 }
+                 new int[]{ 0, 0 },
+                 new int[]{ 1, 0 },
+                 new int[]{ -1, 0 },
+                 new int[]{ 0, 1 },
+                 new int[]{ 0, -1 }
             };
-
+            /// <summary>
+            /// クリック時に自分と隣接ボタンの状態を切り替え、盤面クリア判定を行う
+            /// </summary>
             for (int i = 0; i < toggleOffsets.Length; i++)
             {
                 var offset = toggleOffsets[i];
                 var button = _form1.GetTestButton(_x + offset[0], _y + offset[1]);
                 if (button != null)
                 {
+                    // 存在するボタンは状態を反転させる
                     button.Toggle();
                 }
             }
